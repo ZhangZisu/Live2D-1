@@ -6,7 +6,8 @@
 		"common/textures/1.png",
 		"46/textures/2.png",
 		"46/textures/3.png",
-		"46/textures/4.png"
+		"46/textures/4.png",
+		"46/textures/5.png"
 	],
 	"hit_areas":[
 		{"name":"chest","id":"D_REF.PT_CHEST"},

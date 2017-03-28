@@ -156,6 +156,8 @@ var LAppDefine = {
 			YUKARI_01 : "assets/yukari/01.json",
 		// TSUKIMI
 			TSUKIMI_01 : "assets/tsukimi/01.json",
+		// BLANC
+			BLANC_01 : "assets/blanc/01.json",
 
 	// MOTIONS
 	MOTION_GROUP_IDLE       : "idle",

@@ -8,16 +8,16 @@
 		"05/textures/3.png"
 	],
 	"expressions":[
-		{"name":"F_FUN",         "file":"common/expressions/F_FUN.json"},
-		{"name":"F_FUN_HANIKAMI","file":"common/expressions/F_FUN_HANIKAMI.json"},
-		{"name":"F_FUN_MAX",     "file":"common/expressions/F_FUN_MAX.json"},
-		{"name":"F_FUN_SMILE",   "file":"common/expressions/F_FUN_SMILE.json"},
-		{"name":"F_FUN_WARM",    "file":"common/expressions/F_FUN_WARM.json"},
-		{"name":"F_NOMAL",       "file":"common/expressions/F_NOMAL.json"},
-		{"name":"F_SAD",         "file":"common/expressions/F_SAD.json"},
-		{"name":"F_SURPRISE",    "file":"common/expressions/F_SURPRISE.json"},
-		{"name":"F_ANGRY",       "file":"common/expressions/F_ANGRY.json"},
-		{"name":"F_SLEEP",       "file":"common/expressions/F_SLEEP.json"}
+		{"name":"FUN","file":"common/expressions/FUN.json"},
+		{"name":"FUN_HANIKAMI","file":"common/expressions/FUN_HANIKAMI.json"},
+		{"name":"FUN_MAX","file":"common/expressions/FUN_MAX.json"},
+		{"name":"FUN_SMILE","file":"common/expressions/FUN_SMILE.json"},
+		{"name":"FUN_WARM","file":"common/expressions/FUN_WARM.json"},
+		{"name":"NOMAL","file":"common/expressions/NOMAL.json"},
+		{"name":"SAD","file":"common/expressions/SAD.json"},
+		{"name":"SURPRISE","file":"common/expressions/SURPRISE.json"},
+		{"name":"ANGRY","file":"common/expressions/ANGRY.json"},
+		{"name":"SLEEP","file":"common/expressions/SLEEP.json"}
 	],
 	"hit_areas":[
 		{"name":"head","id":"D_REF.PT_HEAD"},
@@ -36,16 +36,16 @@
 			{"file":"common/motions/tap_body/2.mtn","sound":"common/sounds/VO_Asuna_com_0000002D.wav"}
 		],
 		"pinch_in":[
-			{"file":"common/motions/pinchIn_00.mtn","sound":"sounds/pinchIn_00.mp3"}
+			{"file":"common/motions/pinch_in/0.mtn","sound":"sounds/pinchIn_00.mp3"}
 		],
 		"pinch_out":[
-			{"file":"common/motions/pinchOut_00.mtn","sound":"sounds/pinchOut_00.mp3"}
+			{"file":"common/motions/pinch_out/0.mtn","sound":"sounds/pinchOut_00.mp3"}
 		],
 		"shake":[
-			{"file":"common/motions/shake_00.mtn","sound":"sounds/shake_00.mp3","fade_in":500}
+			{"file":"common/motions/shake/0.mtn","sound":"sounds/shake_00.mp3","fade_in":500}
 		],
 		"flick_head":[
-			{"file":"common/motions/flickHead_00.mtn","sound":"sounds/flickHead_00.mp3"}
+			{"file":"common/motions/flick_head/0.mtn","sound":"sounds/flickHead_00.mp3"}
 		]
 	}
 }

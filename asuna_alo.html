@@ -7,20 +7,30 @@
 
 		<link rel="stylesheet" type="text/css" href="./static/css/style.css">
 
+		<script src="static/js/live2d/Live2D.min.js"></script>
+		<script src="static/js/live2d/pixi.min.js"></script>
+		<script src="static/js/live2d/pixi-live2d.min.js"></script>
 		<script type="text/javascript" src="./static/js/scripts.min.js"></script>
 
 		<style type="text/css">
-			html{
+			/*html {
 				background-image:url(./assets/asuna/background.jpg);
 				background-repeat:no-repeat;
 				background-size:contain;
 				height:100%;
+			}*/
+			body {
+				margin: 0;
+			}
+			canvas {
+				position: absolute;
+				height:100%;
 			}
 		</style>
 	</head>
-	<body onload="sampleApp1()">
+	<body>
 		<section id="model">
-			<canvas id="glcanvas" class="asuna" width="520" height="1200"></canvas>
+			<canvas id="glcanvas_pixi" class="asuna_pixi"></canvas>
 		</section>
 		<section id="aside">
 			<section id="news">
@@ -59,17 +69,120 @@
 		</section>
 
 		<!-- Live2D Scripts -->
-		<script src="static/js/live2d/Live2D.min.js"></script>
+
+		<script>
+
+			var live2dSprite = null;
+
+			var renderer = new PIXI.WebGLRenderer(1024, 1024, {
+				view: document.getElementById('glcanvas_pixi')
+			});
+
+			var stage = new PIXI.Container();
+
+			var background = new PIXI.Sprite.fromImage('assets/asuna/background.jpg');
+			stage.addChild(background);
+
+			// If you want the character follow your pointer only when mousedown, try this
+			var currentMouseStatus = 0;	// up: 0, down: 1
+			stage.interactive = true;
+			stage.on('mousedown', function (evt) {
+				currentMouseStatus = 1;
+				var point = evt.data.global;
+				live2dSprite.setViewPoint(point.x, point.y);
+			});
+
+			stage.on('mousemove', function (evt) {
+				if (currentMouseStatus) {
+					var point = evt.data.global;
+					live2dSprite.setViewPoint(point.x, point.y);
+				}
+			});
+
+			stage.on('mouseup', function (evt) {
+				currentMouseStatus = 0;
+				live2dSprite.setViewPoint(live2dSprite.texture.width / 2, live2dSprite.texture.height / 2);
+			});
+
+			// switch model
+			document.getElementById('glcanvas_pixi')
+			.addEventListener('contextmenu', function (e) {
+				e.preventDefault();
+				var number = (1 + 47 * Math.random()) << 0;
+				console.log('Switch to', number);
+				changeModel(number);
+			});
+
+			// draw loop
+			function animate() {
+					requestAnimationFrame(animate);
+					renderer.render(stage);
+			}
+			animate();
+
+			function createModel(modelData) {
+				if (live2dSprite) {
+					live2dSprite.destroy(true);
+				}
+
+				live2dSprite = new PIXI.Live2DSprite(modelData);
+				stage.addChild(live2dSprite);
+
+				// adjust size and position
+				// If you want to adjust character size when scrolling, just listen to scroll event and call this method
+				live2dSprite.adjustScale(0,0,0.7);
+
+				live2dSprite.startRandomMotion('idle');
+				live2dSprite.on('click', function (evt) {
+					var point = evt.data.global;
+					if (live2dSprite.hitTest('head', point.x, point.y)) {
+						live2dSprite.setRandomExpression();
+					}
+					if (live2dSprite.hitTest('body', point.x, point.y)) {
+						live2dSprite.startRandomMotionOnce('tap_body');
+					}
+				});
+
+				// If you want the character always follow your pointer, try this
+				// live2dSprite.on('mousemove', function (evt) {
+				// 	var point = evt.data.global;
+				// 	live2dSprite.setViewPoint(point.x, point.y);
+				// });
+			}
+
+			function changeModel(number) {
+				var name;
+				if (number > 9) {
+					name = '' + number;
+				} else {
+					name = '0' + number;
+				}
+
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onload = function (e) {
+					var modelData = this.response;
+					createModel(modelData);
+				}
+				xmlhttp.responseType = 'json';
+				xmlhttp.open('get', 'assets/asuna/' + name + '.alo', true);
+				xmlhttp.send();
+			}
+
+			changeModel(1);
+
+		</script>
+
+		<!--<script src="static/js/live2d/Live2D.min.js"></script>
 		<script src="static/js/live2d/Live2DFramework.js"></script>
 		<script src="static/js/live2d/MatrixStack.js"></script>
 		<script src="static/js/live2d/ModelSettingJson.js"></script>
 		<script src="static/js/live2d/PlatformManager.js"></script>
 		<script src="static/js/live2d/LAppModel.js"></script>
-		<script src="static/js/live2d/SampleApp1.js"></script>
+		<script src="static/js/live2d/SampleApp1.js"></script>-->
 
 		<!-- Model Scripts -->
-		<script src="static/js/models/LAppDefine.js"></script>
-		<script src="static/js/models/LAppLive2DManager.asuna_alo.js"></script>
+		<!--<script src="static/js/models/LAppDefine.js"></script>-->
+		<!--<script src="static/js/models/LAppLive2DManager.asuna_alo.js"></script>-->
 	</body>
 	<footer>
 		<input id="btnHidebtn" type="checkbox" checked>

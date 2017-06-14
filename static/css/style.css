@@ -16,7 +16,8 @@
 #epsilon,
 #haru,
 #tsukimi,
-#yukari{
+#yukari,
+#blanc{
 	display:block;
 }
 
@@ -76,6 +77,11 @@
 	left:18%;
 }
 
+.blanc{
+	top:-23em;
+	left:18em;
+}
+
 /* style.css */
 #v{color:#00dc00;}
 
@@ -96,7 +102,7 @@ html > *{
 	font-size:2.56em;
 }
 #accepted{
-	font-size:1.35em;
+	font-size:1.25em;
 }
 
 #glcanvas{
